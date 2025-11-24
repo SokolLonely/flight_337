@@ -1,0 +1,1 @@
+//non-class functions for output and other things
