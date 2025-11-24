@@ -1,6 +1,20 @@
 //header file for classes.cpp
 #include <string>
+#include <vector>
 using namespace std;
+
+class Flight {
+    private:
+        vector<Seat> seats;
+        vector<Passenger> passengers;
+        int number_of_rows;
+        int number_of_seats_per_row;
+        Route* route;
+    public:
+        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
+        void addPassenger(Passenger& passenger);
+};
+
 class Passenger{
     private:
         std::string first_name;
@@ -27,8 +41,8 @@ class Passenger{
         }
         Passenger();
         Passenger(std::string f_name, std::string l_name, int p_number);
-
 };
+
 class Seat{
     private:
         int row_number;
