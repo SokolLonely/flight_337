@@ -1,8 +1,9 @@
 //non-class functions for output and other things
 #include <iostream>
-using namespace std;
-#include <iostream>
 #include "classes.h"
+#include "functions.h"
+using namespace std;
+
 void printWelcomeMessage() {
     cout << "FMAS Version 1.0" << endl;
     cout << "Term Project — Flight Management Application System" << endl;
