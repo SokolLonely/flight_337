@@ -1,6 +1,7 @@
 //non-class functions for output and other things
 using namespace std;
 #include <iostream>
+#include "classes.h"
 void printWelcomeMessage() {
     cout << "FMAS Version 1.0" << endl;
     cout << "Term Project — Flight Management Application System" << endl;
@@ -28,3 +29,9 @@ cout<<"7. Quit."<<endl;
 
 cout<<"Enter your choice: (1, 2, 3, 4, 5, 6, or 7)";
 }
+Flight browseFlightList();
+void displaySeatMap(Flight);
+void displayPassengerInformation(Flight);
+void addNewPassenger(Flight);
+void removeExistingPassenger(Flight);
+void saveDataToFile(Flight);
