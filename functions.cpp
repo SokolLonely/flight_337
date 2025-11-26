@@ -28,3 +28,9 @@ cout<<"7. Quit."<<endl;
 
 cout<<"Enter your choice: (1, 2, 3, 4, 5, 6, or 7)";
 }
+void browseFlightList();
+void displaySeatMap();
+void displayPassengerInformation();
+void addNewPassenger();
+void removeExistingPassenger();
+void saveDataToFile();
