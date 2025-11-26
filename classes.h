@@ -5,16 +5,22 @@
 #include <vector>
 using namespace std;
 
+class Passenger;
+class Seat;
+class Airline;
+class Route;
+class Flight;
+
 class Passenger{
     private:
-        std::string first_name;
-        std::string last_name;
+        string first_name;
+        string last_name;
         int phone_number;
     public:
-        std::string get_first_name() const{
+        string get_first_name() const{
             return first_name;
         }
-        std::string get_last_name() const{
+        string get_last_name() const{
             return last_name;
         }
         int get_phone_number() const{
@@ -23,7 +29,7 @@ class Passenger{
         void set_first_name(const std::string& f_name){
             first_name = f_name;
         }
-         void set_first_name(const std::string& l_name){
+         void set_last_name(const std::string& l_name){
             last_name =l_name;
         }
         void set_phone_number(int p_number){
