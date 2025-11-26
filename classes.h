@@ -5,38 +5,6 @@
 #include <vector>
 using namespace std;
 
-
-class Airline{
-    private:
-        string name;
-        //vector<Flight> flights;
-
-    public:
-        Airline();
-        Airline(string name): name(name){}
-        
-        //addFlight(Flight& flight);
-};
-
-class Route{
-    private:
-        string source;
-        string dest;
-    public:
-        Route();
-        Route(string src, string dest): source(src), dest(dest){}
-class Flight {
-    private:
-        vector<Seat> seats;
-        vector<Passenger> passengers;
-        int number_of_rows;
-        int number_of_seats_per_row;
-        Route* route;
-    public:
-        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
-        void addPassenger(Passenger& passenger);
-};
-
 class Passenger{
     private:
         std::string first_name;
@@ -94,4 +62,37 @@ class Seat{
         Seat();
         Seat(int r_number, char s_character, Passenger* p_ptr);
 
+};
+
+class Airline{
+    private:
+        string name;
+        vector<Flight> flights;
+
+    public:
+        Airline();
+        Airline(string name): name(name){}
+        
+        void addFlight(Flight& flight);
+};
+
+class Route{
+    private:
+        string source;
+        string dest;
+    public:
+        Route();
+        Route(string src, string dest): source(src), dest(dest){}
+};
+
+class Flight {
+    private:
+        vector<Seat> seats;
+        vector<Passenger> passengers;
+        int number_of_rows;
+        int number_of_seats_per_row;
+        Route* route;
+    public:
+        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
+        void addPassenger(Passenger& passenger);
 };
