@@ -71,7 +71,10 @@ class Airline{
 
     public:
         Airline();
-        Airline(string name): name(name){}
+        Airline(string name);
+
+        void set_name(string name);
+        string get_name() const;
         
         void addFlight(Flight& flight);
 };
@@ -81,7 +84,7 @@ class Route{
         string source;
         string dest;
     public:
-        Route();
+        Route(): source(""), dest(""){}
         Route(string src, string dest): source(src), dest(dest){}
 };
 

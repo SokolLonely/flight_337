@@ -1,6 +1,31 @@
 //this file has all code for classes and their functions (methods)
-#include "classes.h"
 using namespace std;
+
+#include "classes.h"
+
+void Airline::addFlight(Flight& flight){
+    flights.push_back(flight);
+    return;
+}
+
+Airline::Airline(){
+    name.clear();
+    flights.clear();
+}
+
+Airline::Airline(string name){
+    set_name(name);
+    flights.clear();
+}
+
+void Airline::set_name(string input_name){
+    name = input_name;
+}
+
+string Airline::get_name() const{
+    return name;
+}
+
 
 Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route) : 
     number_of_rows(number_of_rows), 
