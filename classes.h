@@ -1,4 +1,6 @@
 //header file for classes.cpp
+#ifndef CH
+#define CH
 
 #include <iostream>
 #include <string>
@@ -99,3 +101,5 @@ class Flight {
         Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
         void addPassenger(Passenger& passenger);
 };
+
+#endif
