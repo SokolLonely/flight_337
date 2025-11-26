@@ -1,4 +1,6 @@
 //header file for classes.cpp
+#ifndef CH
+#define CH
 
 #include <iostream>
 #include <string>
@@ -77,7 +79,10 @@ class Airline{
 
     public:
         Airline();
-        Airline(string name): name(name){}
+        Airline(string name);
+
+        void set_name(string name);
+        string get_name() const;
         
         void addFlight(Flight& flight);
 };
@@ -87,7 +92,7 @@ class Route{
         string source;
         string dest;
     public:
-        Route();
+        Route(): source(""), dest(""){}
         Route(string src, string dest): source(src), dest(dest){}
 };
 
@@ -102,3 +107,5 @@ class Flight {
         Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
         void addPassenger(Passenger& passenger);
 };
+
+#endif
