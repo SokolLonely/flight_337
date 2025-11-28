@@ -52,7 +52,7 @@ void display_map(Flight& flight){ //NEED GETTERS FOR FLIGHT
             if (j % 2 == 0)
                 cout << "---+";
             else{
-                if (seats[i][j].occupied)
+                if (seats[i][j].get_occupied())
                     cout << " x |";
                 else
                     cout << "   |";

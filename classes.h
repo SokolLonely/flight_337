@@ -39,7 +39,9 @@ class Seat{
     private:
         int row_number;
         char seat_character;
-        Passenger* passenger_ptr; 
+        Passenger* passenger_ptr;
+        bool occupied;
+
     public:
                 
         int get_row_number() const{
@@ -61,6 +63,7 @@ class Seat{
         void set_passenger_ptr(Passenger* p_ptr){
             passenger_ptr = p_ptr;
         }
+        bool get_occupied();
         Seat();
         Seat(int r_number, char s_character, Passenger* p_ptr);
 
