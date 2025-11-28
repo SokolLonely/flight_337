@@ -27,11 +27,22 @@ string Airline::get_name() const{
 }
 
 
-Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route) : 
+Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route, string id) : 
     number_of_rows(number_of_rows), 
     number_of_seats_per_row(number_of_seats_per_row), 
-    route(route) 
-{}
+    route(route),
+    ID(id)
+{
+    resize_seats();
+}
+
+Flight::Flight(): number_of_rows(0), number_of_seats_per_row(0), route(nullptr), ID(""){}  
+
+void Flight::resize_seats(){
+    seats.resize(number_of_rows);
+    for (int i = 0; i < number_of_rows; i++)
+        seats[i].resize(number_of_seats_per_row);
+}
 
 void Flight::addPassenger(Passenger& passenger) {
     passengers.push_back(passenger);
@@ -63,6 +74,6 @@ Seat::Seat(int r_number, char s_character, Passenger* p_ptr){
     occupied = false;
 }
 
-bool Seat::get_occupied(){
+bool Seat::get_occupied() const{
     return occupied;
 }

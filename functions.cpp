@@ -34,11 +34,11 @@ cout<<"Enter your choice: (1, 2, 3, 4, 5, 6, or 7)";
 
 
 void display_map(Flight& flight){ //NEED GETTERS FOR FLIGHT
-    vector <vector<Seat>> seats = flight.seats;
-    int num_rows = flight.number_of_rows * 2;
-    int num_cols = flight.number_of_seats_per_row * 2;
+    vector <vector<Seat>> seats = flight.get_seats();
+    int num_rows = flight.get_number_of_rows() * 2;
+    int num_cols = flight.get_number_of_seats_per_row() * 2;
     
-    cout << "Aircraft Seat Map for flight " << flight.ID << endl; //FLIGHT ID DOESN'T EXIST
+    cout << "Aircraft Seat Map for flight " << flight.get_ID() << endl; //FLIGHT ID DOESN'T EXIST
     cout << "  ";
     for (int k = 0; k < num_cols/2; k++)
         cout << "  " << (char)65 + k << " ";

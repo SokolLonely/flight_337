@@ -50,7 +50,7 @@ class Seat{
         char get_seat_character() const{
             return seat_character;
         }
-        Passenger* get_passenger_ptr(){
+        Passenger* get_passenger_ptr() const{
             return passenger_ptr;
         }
         //
@@ -63,7 +63,7 @@ class Seat{
         void set_passenger_ptr(Passenger* p_ptr){
             passenger_ptr = p_ptr;
         }
-        bool get_occupied();
+        bool get_occupied() const;
         Seat();
         Seat(int r_number, char s_character, Passenger* p_ptr);
 
@@ -95,14 +95,25 @@ class Route{
 
 class Flight {
     private:
-        vector<Seat> seats;
+        vector<vector<Seat>> seats;
         vector<Passenger> passengers;
         int number_of_rows;
         int number_of_seats_per_row;
         Route* route;
+        string ID;
+
+        void resize_seats();
+        
     public:
-        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
+        Flight(int number_of_rows, int number_of_seats_per_row, Route* route, string ID);
+        Flight();
         void addPassenger(Passenger& passenger);
+
+        vector<vector<Seat>> get_seats (){return seats;}
+        int get_number_of_rows() const {return number_of_rows;}
+        int get_number_of_seats_per_row() const {return number_of_seats_per_row;}
+        string get_ID() const {return ID;}
+
 };
 
 #endif
