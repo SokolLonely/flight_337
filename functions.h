@@ -1,6 +1,11 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-void printWelcomeMessage();
+void cleanStandardInputStream(void);
+void clearScreen(void);
+void pressEnter();
+void displayHeader();
+void printChoicePrompt();
+int menu();
 
 #endif
