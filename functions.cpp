@@ -64,7 +64,7 @@ int menu() {
 
 Flight browseFlightList()
 {
-    ifstream flightFile("flights.txt");
+    ifstream flightFile("data/flights.txt");
     if (!flightFile) {
         cerr << "Error opening flights.txt file." << endl;
         exit(1);
