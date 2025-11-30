@@ -41,7 +41,7 @@ void printChoicePrompt() {
     cout<<"5. Remove an Existing Passenger"<<endl;
     cout<<"6. Save data"<<endl;
     cout<<"7. Quit."<<endl;
-    cout<<"Enter your choice: (1, 2, 3, 4, 5, 6, or 7)"<<endl;
+    cout<<"\nEnter your choice: (1, 2, 3, 4, 5, 6, or 7) ";
 }
 
 int menu() {
@@ -61,40 +61,44 @@ Flight browseFlightList()
         cerr << "Error opening flights.txt file." << endl;
         exit(1);
     }
-    int n = 0;
+
+    cout << "Here is the list of available flights. Please select one:\n" << endl;
+
+    // Store all lines in a vector to avoid reading file twice
+    vector<string> flightLines;
     string line;
+    int n = 1;
     while (getline(flightFile, line)) {
-        n++;
         cout << n << ". " << line << endl;
+        flightLines.push_back(line);
+        n++;
     }
-    cout <<"successfully read "<< n <<" flights from file."<<endl;
+    flightFile.close();
 
     int selected_n;
-    cout <<"select a flight number: ";
+    cout <<"\nEnter your choice: ";
     cin >> selected_n;
-    cout << selected_n<<endl;
-    flightFile.clear(); 
-    flightFile.seekg(0, std::ios::beg);
-    n = 0;
-    while (getline(flightFile, line)) {
-        n++;
-        if (n == selected_n) {
-            break;
-        }
-    }
-    //cout << "selected line:\n"<<line<<endl;
-    
-    flightFile.close();
-    int number_of_rows, number_of_seats_per_row;
-    string id, source, dest;
-    stringstream iss(line);
-    iss >>  id >>source>>dest >>number_of_rows >> number_of_seats_per_row;
+    cleanStandardInputStream(); // Clear any leftover input
 
-    //create a route object
-    Route* route = new Route(source, dest); 
-    Flight returnFlight(number_of_rows, number_of_seats_per_row, route); 
-    cout <<"You have selected "<<id <<" flight from "<< source <<" to "<< dest <<endl;
-    return returnFlight;
+    // TODO: Improve error handling
+    if (selected_n < 1 || selected_n > flightLines.size()) {
+        cerr << "Invalid selection. Please run the program again." << endl;
+        exit(1);
+    }  
+
+    // Parse the selected line
+    line = flightLines[selected_n - 1]; // Convert to 0-based index
+    
+    int number_of_rows, number_of_seats_per_row;
+    string flight_id, flight_departure, flight_destination;
+    stringstream iss(line);
+    iss >>  flight_id >> flight_departure >> flight_destination >> number_of_rows >> number_of_seats_per_row;
+
+    Route* route = new Route(flight_departure, flight_destination); 
+    Flight selectedFlight(number_of_rows, number_of_seats_per_row, route); 
+
+    cout << "You have selected " << flight_id << " flight from " << flight_departure << " to " << flight_destination << "." << endl;
+    return selectedFlight;
 }
 
 void displaySeatMap(Flight& flight) {
