@@ -27,7 +27,7 @@ int main() {
                 pressEnter();
                 break;
             case 3:
-                cout << "Display Passengers Information" << endl; //TODO: replace with function call
+                displayPassengerInfo(selectedAirline -> get_flights()[selected_flight_index]);
                 pressEnter();
                 break;
             case 4:

@@ -21,6 +21,9 @@ class Passenger{
         string phone_number;
     public:
         Passenger(string passenger_id, string f_name, string l_name, string p_number);
+        string get_passenger_id() const{
+            return passenger_id;
+        }
         string get_first_name() const{
             return first_name;
         }
@@ -110,6 +113,7 @@ class Flight {
         int get_number_of_seats_per_row() const { return number_of_seats_per_row; }
         Route get_route() const { return route; }
         string get_flight_id() const { return flight_id; }
+        vector<Passenger> get_passengers() const { return passengers; }
 };
 
 #endif

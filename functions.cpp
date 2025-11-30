@@ -117,7 +117,7 @@ int browseFlightList(vector<Flight> flights)
     return selected_flight_index - 1;
 }
 
-void displaySeatMap(Flight flight) {
+void displaySeatMap(Flight& flight) {
     vector<Seat> seats = flight.get_seats();
     int num_rows = flight.get_number_of_rows();
     int num_cols = flight.get_number_of_seats_per_row();
@@ -169,7 +169,21 @@ void displaySeatMap(Flight flight) {
     }
 }
 
-void displayPassengerInformation(Flight);
-void addNewPassenger(Flight);
-void removeExistingPassenger(Flight);
-void saveDataToFile(Flight);
+void displayPassengerInfo(Flight& flight) {
+    vector<Passenger> passengers = flight.get_passengers();
+    vector<Seat> seats = flight.get_seats();
+
+    cout << "Passenger List (Flight: " << flight.get_flight_id() << " from " << flight.get_route().get_source() << " to " << flight.get_route().get_destination() << ")\n" << endl;
+
+    cout << left << setw(15) << "First Name" << setw(15) << "Last Name" << setw(18) << "Phone" << setw(8) << "Row" << setw(8) << "Seat" << setw(5) << "ID" << endl;
+    cout << "---------------------------------------------------------------------" << endl;
+    for (int i = 0; i < passengers.size(); i++) {
+        Passenger& passenger = passengers[i];
+        Seat& seat = seats[i];
+        cout << left << setw(15) << passenger.get_first_name() << setw(15) << passenger.get_last_name() << setw(18) << passenger.get_phone_number() << setw(8) << seat.get_row_number() << setw(8) << seat.get_seat_character() << setw(5) << passenger.get_passenger_id() << endl;
+        cout << "---------------------------------------------------------------------" << endl;
+    }
+};
+void addNewPassenger(Flight& flight);
+void removeExistingPassenger(Flight& flight);
+void saveDataToFile(Flight& flight);
