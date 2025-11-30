@@ -3,8 +3,13 @@
 #include <cstdlib>
 #include "classes.h"
 #include "functions.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <string>
 using namespace std;
 
+#define _WIN32
 void cleanStandardInputStream (void) {
     int leftover;
     do {
@@ -28,8 +33,9 @@ void pressEnter() {
 
 void displayHeader() {
     clearScreen();
+    clearScreen();
     cout << "FMAS Version 1.0" << endl;
-    cout << "Term Project — Flight Management Application System" << endl;
+    cout << "Term Project - Flight Management Application System" << endl;
     cout << "Produced by Group#: 139" << endl;
     cout << "Names: Ryabinkin, Simon; ElSayed, Abdelrahman; Boucher, Maxime" << endl;
     pressEnter();
@@ -49,14 +55,53 @@ void printChoicePrompt() {
 
 int menu() {
     int choice = -1;
-    clearScreen();
+    //clearScreen();
     printChoicePrompt();
     cin >> choice;
     cleanStandardInputStream();
     return choice;
 }
 
-Flight browseFlightList();
+Flight browseFlightList()
+{
+    ifstream flightFile("flights.txt");
+    if (!flightFile) {
+        cerr << "Error opening flights.txt file." << endl;
+        exit(1);
+    }
+    int n = 0;
+    string line;
+    while (getline(flightFile, line)) {
+        n++;
+        cout << n << ". " << line << endl;
+    }
+    cout <<"successfully read "<< n <<" flights from file."<<endl;
+
+    int selected_n;
+    cout <<"select a flight number: ";
+    cin >> selected_n;
+    cout << selected_n<<endl;
+    flightFile.clear(); 
+    flightFile.seekg(0, std::ios::beg);
+    n = 0;
+    while (getline(flightFile, line)) {
+        n++;
+        if (n == selected_n) {
+            break;
+        }
+    }
+    cout << "selected line:\n"<<line<<endl;
+    
+    flightFile.close();
+    int number_of_rows, number_of_seats_per_row;
+    string temp;
+    stringstream iss(line);
+    iss >> temp>>temp>>temp >>number_of_rows >> number_of_seats_per_row;
+    //create a Flight object based on selected flight details
+    cout <<"Creating flight with "<<number_of_rows<<" rows and "<<number_of_seats_per_row<<" seats per row."<<endl;
+    Flight dummyFlight(10, 6, nullptr); 
+    return dummyFlight;
+}
 void displaySeatMap(Flight);
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);

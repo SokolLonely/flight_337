@@ -104,7 +104,8 @@ class Flight {
         int number_of_seats_per_row;
         Route* route;
     public:
-        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
+        Flight(int number_of_rows=0, int number_of_seats_per_row=0, Route* route=nullptr);
+        //Flight();
         void addPassenger(Passenger& passenger);
 };
 
