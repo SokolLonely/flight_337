@@ -1,12 +1,10 @@
-//non-class functions for output and other things
 #include <iostream>
 #include <cstdlib>
-#include "classes.h"
-#include "functions.h"
 #include <fstream>
 #include <sstream>
-#include <iostream>
 #include <string>
+#include "classes.h"
+#include "functions.h"
 using namespace std;
 
 void cleanStandardInputStream (void) {
