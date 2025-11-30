@@ -111,7 +111,7 @@ class Flight {
         void resize_seats();
         
     public:
-        Flight(int number_of_rows=0, int number_of_seats_per_row=0, Route* route=nullptr);
+        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
         
         void addPassenger(Passenger& passenger);
 

@@ -27,17 +27,12 @@ string Airline::get_name() const{
 }
 
 
-Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route ) 
+Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route) 
+    : number_of_rows(number_of_rows), number_of_seats_per_row(number_of_seats_per_row), route(route)
 {
-    this->number_of_rows= number_of_rows, 
-    this->number_of_seats_per_row = number_of_seats_per_row, 
-    this->route= route,
     //ID(id)
-
     resize_seats();
 }
-
-//Flight::Flight(): number_of_rows(0), number_of_seats_per_row(0), route(nullptr){}  
 
 void Flight::resize_seats(){
     seats.resize(number_of_rows);

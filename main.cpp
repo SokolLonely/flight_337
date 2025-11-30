@@ -6,18 +6,18 @@ using namespace std;
 
 int main() {
     displayHeader();
-    int choice;
-    Flight active;
-    while((choice = menu())){
+    int menu_choice;
+    Flight* selectedFlight = nullptr;
+
+    while((menu_choice = menu())){
         clearScreen();
-        switch(choice) {
+        switch(menu_choice) {
             case 1:
-                active = browseFlightList();
+                selectedFlight = browseFlightList();
                 pressEnter();
                 break;
             case 2:
-                cout << "Display Flight Seat Map" << endl; //TODO: replace with function call
-                displaySeatMap(active);
+                displaySeatMap(selectedFlight);
                 pressEnter();
                 break;
             case 3:
