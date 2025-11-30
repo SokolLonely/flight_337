@@ -90,17 +90,19 @@ Flight browseFlightList()
             break;
         }
     }
-    cout << "selected line:\n"<<line<<endl;
+    //cout << "selected line:\n"<<line<<endl;
     
     flightFile.close();
     int number_of_rows, number_of_seats_per_row;
-    string temp;
+    string id, source, dest;
     stringstream iss(line);
-    iss >> temp>>temp>>temp >>number_of_rows >> number_of_seats_per_row;
-    //create a Flight object based on selected flight details
-    cout <<"Creating flight with "<<number_of_rows<<" rows and "<<number_of_seats_per_row<<" seats per row."<<endl;
-    Flight dummyFlight(10, 6, nullptr); 
-    return dummyFlight;
+    iss >>  id >>source>>dest >>number_of_rows >> number_of_seats_per_row;
+
+    //create a route object
+    Route* route = new Route(source, dest); 
+    Flight returnFlight(number_of_rows, number_of_seats_per_row, route); 
+    cout <<"You have selected "<<id <<" flight from "<< source <<" to "<< dest <<endl;
+    return returnFlight;
 }
 void displaySeatMap(Flight);
 void displayPassengerInformation(Flight);

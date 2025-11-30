@@ -13,8 +13,9 @@ int main() {
         switch(choice){
             case 1:
                 cout << "Select a flight" << endl; //TODO: replace with function call
-                pressEnter();
+                
                 active = browseFlightList();
+                pressEnter();
                 break;
             case 2:
                 cout << "Display Flight Seat Map" << endl; //TODO: replace with function call
