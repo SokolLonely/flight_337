@@ -5,12 +5,16 @@
 using namespace std;
 
 int main() {
+    //cleanStandardInputStream();
     displayHeader();
     int choice;
+    Flight active;
     while((choice = menu())){
         switch(choice){
             case 1:
                 cout << "Select a flight" << endl; //TODO: replace with function call
+                
+                active = browseFlightList();
                 pressEnter();
                 break;
             case 2:

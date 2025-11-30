@@ -3,8 +3,13 @@
 #include <cstdlib>
 #include "classes.h"
 #include "functions.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <string>
 using namespace std;
 
+#define _WIN32
 void cleanStandardInputStream (void) {
     int leftover;
     do {
@@ -27,8 +32,9 @@ void pressEnter() {
 
 void displayHeader() {
     clearScreen();
+    clearScreen();
     cout << "FMAS Version 1.0" << endl;
-    cout << "Term Project — Flight Management Application System" << endl;
+    cout << "Term Project - Flight Management Application System" << endl;
     cout << "Produced by Group#: 139" << endl;
     cout << "Names: Ryabinkin, Simon; ElSayed, Abdelrahman; Boucher, Maxime" << endl;
     pressEnter();
@@ -48,11 +54,55 @@ void printChoicePrompt() {
 
 int menu() {
     int choice = -1;
-    clearScreen();
+    //clearScreen();
     printChoicePrompt();
     cin >> choice;
     cleanStandardInputStream();
     return choice;
+}
+
+
+Flight browseFlightList()
+{
+    ifstream flightFile("flights.txt");
+    if (!flightFile) {
+        cerr << "Error opening flights.txt file." << endl;
+        exit(1);
+    }
+    int n = 0;
+    string line;
+    while (getline(flightFile, line)) {
+        n++;
+        cout << n << ". " << line << endl;
+    }
+    cout <<"successfully read "<< n <<" flights from file."<<endl;
+
+    int selected_n;
+    cout <<"select a flight number: ";
+    cin >> selected_n;
+    cout << selected_n<<endl;
+    flightFile.clear(); 
+    flightFile.seekg(0, std::ios::beg);
+    n = 0;
+    while (getline(flightFile, line)) {
+        n++;
+        if (n == selected_n) {
+            break;
+        }
+    }
+    //cout << "selected line:\n"<<line<<endl;
+    
+    flightFile.close();
+    int number_of_rows, number_of_seats_per_row;
+    string id, source, dest;
+    stringstream iss(line);
+    iss >>  id >>source>>dest >>number_of_rows >> number_of_seats_per_row;
+
+    //create a route object
+    Route* route = new Route(source, dest); 
+    Flight returnFlight(number_of_rows, number_of_seats_per_row, route); 
+    cout <<"You have selected "<<id <<" flight from "<< source <<" to "<< dest <<endl;
+    return returnFlight;
 }
 
 void displaySeatMap(Flight& flight) {
@@ -85,6 +135,7 @@ void displaySeatMap(Flight& flight) {
 }
 
 Flight browseFlightList();
+
 void displaySeatMap(Flight);
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);
