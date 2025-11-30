@@ -19,7 +19,7 @@ void clearScreen(void) {
 }
 
 void pressEnter() {
-    cout << "\n<<< Press Return to Continue>>>>\n";
+    cout << "\n<<< Press Return to Continue >>>" << endl;
     cin.get();
 }
 
