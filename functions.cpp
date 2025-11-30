@@ -95,18 +95,18 @@ Flight* browseFlightList()
     iss >>  flight_id >> flight_departure >> flight_destination >> number_of_rows >> number_of_seats_per_row;
 
     Route* route = new Route(flight_departure, flight_destination); 
-    Flight* selectedFlight = new Flight(number_of_rows, number_of_seats_per_row, route); 
+    Flight* selectedFlight = new Flight(flight_id, number_of_rows, number_of_seats_per_row, route); 
 
     cout << "You have selected " << flight_id << " flight from " << flight_departure << " to " << flight_destination << "." << endl;
     return selectedFlight;
 }
 
 void displaySeatMap(Flight* flight) {
-    vector <vector<Seat>> seats = flight->get_seats();
-    int num_rows = flight->get_number_of_rows() * 2;
-    int num_cols = flight->get_number_of_seats_per_row() * 2;
+    vector <vector<Seat>> seats = flight -> get_seats();
+    int num_rows = flight -> get_number_of_rows() * 2;
+    int num_cols = flight -> get_number_of_seats_per_row() * 2;
     
-    cout << "Aircraft Seat Map for flight " << flight->get_ID() << endl;
+    cout << "Aircraft Seat Map for flight " << flight -> get_flight_id() << endl;
     cout << "  ";
     for (int k = 0; k < num_cols/2; k++)
         cout << "  " << (char)65 + k << " ";
@@ -130,7 +130,7 @@ void displaySeatMap(Flight* flight) {
     }
 }
 
-Flight browseFlightList();
+Flight* browseFlightList();
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);
 void removeExistingPassenger(Flight);

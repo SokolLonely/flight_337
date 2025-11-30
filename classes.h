@@ -106,20 +106,15 @@ class Flight {
         int number_of_rows;
         int number_of_seats_per_row;
         Route* route;
-        string ID;
-
+        string flight_id;
         void resize_seats();
-        
     public:
-        Flight(int number_of_rows, int number_of_seats_per_row, Route* route);
-        
+        Flight(string flight_id, int number_of_rows, int number_of_seats_per_row, Route* route);
         void addPassenger(Passenger& passenger);
-
-        vector<vector<Seat>> get_seats (){return seats;}
-        int get_number_of_rows() const {return number_of_rows;}
-        int get_number_of_seats_per_row() const {return number_of_seats_per_row;}
-        string get_ID() const {return ID;}
-
+        vector<vector<Seat>> get_seats () { return seats; }
+        int get_number_of_rows() const { return number_of_rows; }
+        int get_number_of_seats_per_row() const { return number_of_seats_per_row; }
+        string get_flight_id() const { return flight_id; }
 };
 
 #endif
