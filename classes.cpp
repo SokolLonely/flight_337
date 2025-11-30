@@ -27,11 +27,22 @@ string Airline::get_name() const{
 }
 
 
-Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route) : 
+Flight::Flight(int number_of_rows, int number_of_seats_per_row, Route* route, string id) : 
     number_of_rows(number_of_rows), 
     number_of_seats_per_row(number_of_seats_per_row), 
-    route(route) 
-{}
+    route(route),
+    ID(id)
+{
+    resize_seats();
+}
+
+Flight::Flight(): number_of_rows(0), number_of_seats_per_row(0), route(nullptr), ID(""){}  
+
+void Flight::resize_seats(){
+    seats.resize(number_of_rows);
+    for (int i = 0; i < number_of_rows; i++)
+        seats[i].resize(number_of_seats_per_row);
+}
 
 void Flight::addPassenger(Passenger& passenger) {
     passengers.push_back(passenger);
@@ -42,18 +53,27 @@ Passenger::Passenger(){
     last_name = "";
     phone_number = 0;
 }
+
 Passenger::Passenger(std::string f_name, std::string l_name, int p_number){
     first_name = f_name;
     last_name = l_name;
     phone_number = p_number;
 }
+
 Seat::Seat(){
     row_number = 0;
     seat_character = '\0';
     passenger_ptr = nullptr;
+    occupied = false;
 }
+
 Seat::Seat(int r_number, char s_character, Passenger* p_ptr){
     row_number = r_number;
     seat_character = s_character;
     passenger_ptr = p_ptr;
+    occupied = false;
+}
+
+bool Seat::get_occupied() const{
+    return occupied;
 }

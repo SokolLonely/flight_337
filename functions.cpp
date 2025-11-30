@@ -25,7 +25,6 @@ void clearScreen(void) {
     #endif
 }
 
-
 void pressEnter() {
     cout << "\n<<< Press Return to Continue>>>>\n";
     cin.get();
@@ -61,6 +60,7 @@ int menu() {
     cleanStandardInputStream();
     return choice;
 }
+
 
 Flight browseFlightList()
 {
@@ -104,6 +104,38 @@ Flight browseFlightList()
     cout <<"You have selected "<<id <<" flight from "<< source <<" to "<< dest <<endl;
     return returnFlight;
 }
+
+void displaySeatMap(Flight& flight) {
+    vector <vector<Seat>> seats = flight.get_seats();
+    int num_rows = flight.get_number_of_rows() * 2;
+    int num_cols = flight.get_number_of_seats_per_row() * 2;
+    
+    cout << "Aircraft Seat Map for flight " << flight.get_ID() << endl;
+    cout << "  ";
+    for (int k = 0; k < num_cols/2; k++)
+        cout << "  " << (char)65 + k << " ";
+
+    for (int i = 0; i < num_rows; i++){
+        if (i % 2 == 0)
+            cout << "  +";
+        else
+            cout << (1 + i / 2) << " |";
+        for (int j = 0; j < num_cols; j++){
+            if (j % 2 == 0)
+                cout << "---+";
+            else{
+                if (seats[i][j].get_occupied())
+                    cout << " x |";
+                else
+                    cout << "   |";
+            }
+        }
+        cout << endl;
+    }
+}
+
+Flight browseFlightList();
+
 void displaySeatMap(Flight);
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);
