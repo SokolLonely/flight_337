@@ -53,82 +53,95 @@ int menu() {
     return choice;
 }
 
+Airline* createAirline() {
+    Airline* airline = new Airline("WestJet");
 
-Flight* browseFlightList()
-{
+    // Open data files
     ifstream flightFile("data/flights.txt");
     if (!flightFile) {
         cerr << "Error opening flights.txt file." << endl;
         exit(1);
     }
-
-    cout << "Here is the list of available flights. Please select one:\n" << endl;
-
-    // Store all lines in a vector to avoid reading file twice
-    vector<string> flightLines;
-    string line;
-    int n = 1;
-    while (getline(flightFile, line)) {
-        cout << n << ". " << line << endl;
-        flightLines.push_back(line);
-        n++;
-    }
-    flightFile.close();
-
-    int selected_n;
-    cout <<"\nEnter your choice: ";
-    cin >> selected_n;
-    cleanStandardInputStream(); // Clear any leftover input
-
-    // TODO: Improve error handling
-    if (selected_n < 1 || selected_n > flightLines.size()) {
-        cerr << "Invalid selection. Please run the program again." << endl;
+    ifstream passengerFile("data/passengers.txt");
+    if (!passengerFile) {
+        cerr << "Error opening passengers.txt file." << endl;
         exit(1);
-    }  
-
-    // Parse the selected line
-    line = flightLines[selected_n - 1]; // Convert to 0-based index
+    }
     
-    int number_of_rows, number_of_seats_per_row;
-    string flight_id, flight_departure, flight_destination;
-    stringstream iss(line);
-    iss >>  flight_id >> flight_departure >> flight_destination >> number_of_rows >> number_of_seats_per_row;
-
-    Route* route = new Route(flight_departure, flight_destination); 
-    Flight* selectedFlight = new Flight(flight_id, number_of_rows, number_of_seats_per_row, route); 
-
-    cout << "You have selected " << flight_id << " flight from " << flight_departure << " to " << flight_destination << "." << endl;
-    return selectedFlight;
-}
-
-void displaySeatMap(Flight* flight) {
-    vector <vector<Seat>> seats = flight -> get_seats();
-    int num_rows = flight -> get_number_of_rows() * 2;
-    int num_cols = flight -> get_number_of_seats_per_row() * 2;
+    string line;
+    while (getline(flightFile, line)) {
+        int number_of_rows, number_of_seats_per_row;
+        string flight_id, flight_departure, flight_destination;
+        stringstream iss(line);
+        iss >>  flight_id >> flight_departure >> flight_destination >> number_of_rows >> number_of_seats_per_row;
+        Route route = Route(flight_departure, flight_destination); 
+        Flight flight = Flight(flight_id, number_of_rows, number_of_seats_per_row, route);
     
-    cout << "Aircraft Seat Map for flight " << flight -> get_flight_id() << endl;
-    cout << "  ";
-    for (int k = 0; k < num_cols/2; k++)
-        cout << "  " << (char)65 + k << " ";
-
-    for (int i = 0; i < num_rows; i++){
-        if (i % 2 == 0)
-            cout << "  +";
-        else
-            cout << (1 + i / 2) << " |";
-        for (int j = 0; j < num_cols; j++){
-            if (j % 2 == 0)
-                cout << "---+";
-            else{
-                if (seats[i][j].get_occupied())
-                    cout << " x |";
-                else
-                    cout << "   |";
+        // Add passengers and seats to flight
+        // Reset passenger file pointer to beginning for each flight
+        passengerFile.clear();
+        passengerFile.seekg(0);
+        while (getline(passengerFile, line)) {
+            string passenger_flight_id, first_name, last_name, phone_number, seat_id, passenger_id;
+            stringstream iss(line);
+            iss >> passenger_flight_id >> first_name >> last_name >> phone_number >> seat_id >> passenger_id;
+            Passenger passenger = Passenger(passenger_id, first_name, last_name, phone_number);
+            Seat seat = Seat(seat_id, passenger_id);
+            if (passenger_flight_id == flight_id) {
+                flight.addPassenger(passenger);
+                flight.addSeat(seat);
             }
         }
-        cout << endl;
+    
+        airline -> addFlight(flight);
     }
+    flightFile.close();
+    passengerFile.close();
+    return airline;
 }
+
+int browseFlightList(vector<Flight> flights)
+{
+    for (int i = 0; i < flights.size(); i++) {
+        cout << i + 1 << ". " << flights[i].get_flight_id() << "  " << flights[i].get_route().get_source() << "  " << flights[i].get_route().get_destination() << "  " << flights[i].get_number_of_rows() << "  " << flights[i].get_number_of_seats_per_row() << endl;
+    }
+    int selected_flight_index;
+    cout << "\nEnter your choice: ";
+    cin >> selected_flight_index;
+    // TODO: improve error handling
+    cleanStandardInputStream(); // Clear any leftover input
+    cout << "You have selected flight " << flights[selected_flight_index - 1].get_flight_id() << " from " << flights[selected_flight_index - 1].get_route().get_source() << " to " << flights[selected_flight_index - 1].get_route().get_destination() << "." << endl;
+    return selected_flight_index - 1;
+}
+
+// void displaySeatMap(Flight* flight) {
+//     vector <Seat> seats = flight -> get_seats();
+//     int num_rows = flight -> get_number_of_rows() * 2;
+//     int num_cols = flight -> get_number_of_seats_per_row() * 2;
+    
+//     cout << "Aircraft Seat Map for flight " << flight -> get_flight_id() << endl;
+//     cout << "  ";
+//     for (int k = 0; k < num_cols/2; k++)
+//         cout << "  " << (char)65 + k << " ";
+
+//     for (int i = 0; i < num_rows; i++){
+//         if (i % 2 == 0)
+//             cout << "  +";
+//         else
+//             cout << (1 + i / 2) << " |";
+//         for (int j = 0; j < num_cols; j++){
+//             if (j % 2 == 0)
+//                 cout << "---+";
+//             else{
+//                 if (seats[i][j].get_occupied())
+//                     cout << " x |";
+//                 else
+//                     cout << "   |";
+//             }
+//         }
+//         cout << endl;
+//     }
+// }
 
 Flight* browseFlightList();
 void displayPassengerInformation(Flight);

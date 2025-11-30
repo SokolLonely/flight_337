@@ -1,5 +1,7 @@
 //only main function here. all other functions and calls go to classes.cpp 
 //we may create a seperate file for formatted output functions
+#include <fstream>
+#include <string>
 #include "functions.h"
 #include "classes.h"
 using namespace std;
@@ -7,17 +9,21 @@ using namespace std;
 int main() {
     displayHeader();
     int menu_choice;
-    Flight* selectedFlight = nullptr;
 
-    while((menu_choice = menu())){
+    // Initialize database of flights
+    Airline* selectedAirline = createAirline(); // Should have possibility of multiple airlines in the future
+
+    int selected_flight_index = 0;
+
+    while((menu_choice = menu())) {
         clearScreen();
         switch(menu_choice) {
             case 1:
-                selectedFlight = browseFlightList();
+                selected_flight_index = browseFlightList(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:
-                displaySeatMap(selectedFlight);
+                // displaySeatMap(selectedFlight);
                 pressEnter();
                 break;
             case 3:
@@ -37,7 +43,8 @@ int main() {
                 pressEnter();
                 break;
             case 7:
-                cout << "Quitting..." << endl;
+                cout << "Program terminated." << endl;
+                delete selectedAirline;
                 return 0;
             default:
                 cout << "Invalid choice. Please try again." << endl;
@@ -45,5 +52,6 @@ int main() {
                 break;
         }
     }
+    delete selectedAirline;
     return 0;   
 }

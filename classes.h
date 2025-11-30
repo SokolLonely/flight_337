@@ -15,105 +15,100 @@ class Flight;
 
 class Passenger{
     private:
+        string passenger_id;
         string first_name;
         string last_name;
-        int phone_number;
+        string phone_number;
     public:
+        Passenger(string passenger_id, string f_name, string l_name, string p_number);
         string get_first_name() const{
             return first_name;
         }
         string get_last_name() const{
             return last_name;
         }
-        int get_phone_number() const{
+        string get_phone_number() const{
             return phone_number;
         }
-        void set_first_name(const std::string& f_name){
+        void set_first_name(const string& f_name){
             first_name = f_name;
         }
-         void set_last_name(const std::string& l_name){
-            last_name =l_name;
+         void set_last_name(const string& l_name){
+            last_name = l_name;
         }
-        void set_phone_number(int p_number){
+        void set_phone_number(string p_number){
             phone_number = p_number;
         }
-        Passenger();
-        Passenger(std::string f_name, std::string l_name, int p_number);
 };
 
 class Seat{
     private:
         int row_number;
         char seat_character;
-        Passenger* passenger_ptr;
-        bool occupied;
-
-    public:
-                
+        string passenger_id;
+    public:  
+        Seat(string seat_id, string passenger_id);     
+        string get_passenger_id() const {
+            return passenger_id;
+        }
         int get_row_number() const{
             return row_number;
         }
         char get_seat_character() const{
             return seat_character;
         }
-        Passenger* get_passenger_ptr() const{
-            return passenger_ptr;
-        }
-        //
         void set_row_number(int r_number){
             row_number = r_number;
         }
         void set_seat_character(char s_character){
             seat_character = s_character;
         }
-        void set_passenger_ptr(Passenger* p_ptr){
-            passenger_ptr = p_ptr;
+        void set_passenger_id(string passenger_id){
+            passenger_id = passenger_id;
         }
-        bool get_occupied() const;
-        Seat();
-        Seat(int r_number, char s_character, Passenger* p_ptr);
-
 };
 
 class Airline{
     private:
         string name;
         vector<Flight> flights;
-
     public:
         Airline();
         Airline(string name);
 
         void set_name(string name);
         string get_name() const;
-        
+        vector<Flight> get_flights() const { return flights; }
         void addFlight(Flight& flight);
 };
 
-class Route{
+class Route {
     private:
         string source;
-        string dest;
+        string destination;
     public:
-        Route(): source(""), dest(""){}
-        Route(string src, string dest): source(src), dest(dest){}
+        Route(string source, string destination): source(source), destination(destination){}
+        string get_source() const { return source; }
+        string get_destination() const { return destination; }
 };
 
 class Flight {
     private:
-        vector<vector<Seat>> seats;
+        vector<Seat> seats;
         vector<Passenger> passengers;
         int number_of_rows;
         int number_of_seats_per_row;
-        Route* route;
+        Route route;
         string flight_id;
         void resize_seats();
     public:
-        Flight(string flight_id, int number_of_rows, int number_of_seats_per_row, Route* route);
+        Flight(string flight_id, int number_of_rows, int number_of_seats_per_row, Route route);
         void addPassenger(Passenger& passenger);
-        vector<vector<Seat>> get_seats () { return seats; }
+        void addSeat(Seat& seat);
+        vector<Seat> get_seats () { return seats; }
         int get_number_of_rows() const { return number_of_rows; }
         int get_number_of_seats_per_row() const { return number_of_seats_per_row; }
+        Route get_route() const { return route; }
         string get_flight_id() const { return flight_id; }
 };
 
