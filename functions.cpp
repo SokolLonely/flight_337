@@ -102,9 +102,11 @@ Airline* createAirline() {
 }
 
 int browseFlightList(vector<Flight> flights)
-{
+{   
+    cout << "Here is the list of available flights. Please select one: \n" << endl;
+    
     for (int i = 0; i < flights.size(); i++) {
-        cout << i + 1 << ". " << flights[i].get_flight_id() << "  " << flights[i].get_route().get_source() << "  " << flights[i].get_route().get_destination() << "  " << flights[i].get_number_of_rows() << "  " << flights[i].get_number_of_seats_per_row() << endl;
+        cout << i + 1 << ". " << left << setw(8) << flights[i].get_flight_id() << setw(10) << flights[i].get_route().get_source() << setw(10) << flights[i].get_route().get_destination() << setw(4) << flights[i].get_number_of_rows() << flights[i].get_number_of_seats_per_row() << endl;
     }
     int selected_flight_index;
     cout << "\nEnter your choice: ";
