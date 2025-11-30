@@ -8,9 +8,9 @@ void displayHeader();
 void printChoicePrompt();
 int menu();
 Flight browseFlightList();
-void displaySeatMap(Flight);
-void displayPassengerInformation(Flight);
-void addNewPassenger(Flight);
-void removeExistingPassenger(Flight);
-void saveDataToFile(Flight);
+void displaySeatMap(Flight& flight);
+void displayPassengerInformation(Flight& flight);
+void addNewPassenger(Flight& flight);
+void removeExistingPassenger(Flight& flight);
+void saveDataToFile(Flight& flight);
 #endif

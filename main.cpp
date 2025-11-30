@@ -19,6 +19,7 @@ int main() {
                 break;
             case 2:
                 cout << "Display Flight Seat Map" << endl; //TODO: replace with function call
+                displaySeatMap(active);
                 pressEnter();
                 break;
             case 3:

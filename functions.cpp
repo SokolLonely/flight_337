@@ -135,8 +135,6 @@ void displaySeatMap(Flight& flight) {
 }
 
 Flight browseFlightList();
-
-void displaySeatMap(Flight);
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);
 void removeExistingPassenger(Flight);
