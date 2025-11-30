@@ -23,7 +23,7 @@ int main() {
                 pressEnter();
                 break;
             case 2:
-                // displaySeatMap(selectedFlight);
+                displaySeatMap(selectedAirline -> get_flights()[selected_flight_index]);
                 pressEnter();
                 break;
             case 3:

@@ -9,7 +9,7 @@ void printChoicePrompt();
 int menu();
 Airline* createAirline();
 int browseFlightList(vector<Flight> flights);
-void displaySeatMap(Flight* flight);
+void displaySeatMap(Flight flight);
 void displayPassengerInformation(Flight& flight);
 void addNewPassenger(Flight& flight);
 void removeExistingPassenger(Flight& flight);

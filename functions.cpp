@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <iomanip>
 #include "classes.h"
 #include "functions.h"
 using namespace std;
@@ -114,36 +115,58 @@ int browseFlightList(vector<Flight> flights)
     return selected_flight_index - 1;
 }
 
-// void displaySeatMap(Flight* flight) {
-//     vector <Seat> seats = flight -> get_seats();
-//     int num_rows = flight -> get_number_of_rows() * 2;
-//     int num_cols = flight -> get_number_of_seats_per_row() * 2;
+void displaySeatMap(Flight flight) {
+    vector<Seat> seats = flight.get_seats();
+    int num_rows = flight.get_number_of_rows();
+    int num_cols = flight.get_number_of_seats_per_row();
     
-//     cout << "Aircraft Seat Map for flight " << flight -> get_flight_id() << endl;
-//     cout << "  ";
-//     for (int k = 0; k < num_cols/2; k++)
-//         cout << "  " << (char)65 + k << " ";
+    // Create a 2D map to quickly find seats by row and column
+    vector<vector<bool>> seatMap(num_rows, vector<bool>(num_cols, false));
+    for (const Seat& seat : seats) {
+        int seat_row = seat.get_row_number(); // 1-based
+        char col_char = seat.get_seat_character();
+        int map_row = seat_row - 1; // Convert to 0-based for vector indexing
+        if (map_row >= 0 && map_row < num_rows && col_char >= 'A' && col_char < 'A' + num_cols) {
+            int map_col = col_char - 'A';
+            seatMap[map_row][map_col] = !seat.get_passenger_id().empty();
+        }
+    }
+    
+    cout << "Aircraft Seat Map for flight " << flight.get_flight_id() << "\n" << endl;
+    
+    // Print column headers
+    cout << setw(3) << "";
+    for (int c = 0; c < num_cols; c++) {
+        cout << "  " << (char)('A' + c) << " ";
+    }
+    cout << endl;
+    
+    // Print top border
+    cout << right << setw(4) << "+";
+    for (int c = 0; c < num_cols; c++) {
+        cout << "---+";
+    }
+    cout << endl;
+    
+    // Print seat rows
+    for (int r = 0; r < num_rows; r++) {
+        cout << left << setw(2) << (r + 1) << " |";
+        for (int c = 0; c < num_cols; c++) {
+            if (seatMap[r][c]) {
+                cout << " X |";
+            } else {
+                cout << "   |";
+            }
+        }
+        cout << endl;
+        cout << right << setw(4) << "+";
+        for (int c = 0; c < num_cols; c++) {
+            cout << "---+";
+        }
+        cout << endl;
+    }
+}
 
-//     for (int i = 0; i < num_rows; i++){
-//         if (i % 2 == 0)
-//             cout << "  +";
-//         else
-//             cout << (1 + i / 2) << " |";
-//         for (int j = 0; j < num_cols; j++){
-//             if (j % 2 == 0)
-//                 cout << "---+";
-//             else{
-//                 if (seats[i][j].get_occupied())
-//                     cout << " x |";
-//                 else
-//                     cout << "   |";
-//             }
-//         }
-//         cout << endl;
-//     }
-// }
-
-Flight* browseFlightList();
 void displayPassengerInformation(Flight);
 void addNewPassenger(Flight);
 void removeExistingPassenger(Flight);
