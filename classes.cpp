@@ -76,3 +76,7 @@ Seat::Seat(string seat_id, string passenger_id)
         seat_character = '\0';
     }
 }
+
+Seat::Seat(int row_number, char seat_character, string passenger_id)
+    : row_number(row_number), seat_character(seat_character), passenger_id(passenger_id)
+{}

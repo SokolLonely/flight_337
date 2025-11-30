@@ -184,6 +184,31 @@ void displayPassengerInfo(Flight& flight) {
         cout << "---------------------------------------------------------------------" << endl;
     }
 };
-void addNewPassenger(Flight& flight);
+
+void addNewPassenger(Flight& flight) {
+    string passenger_id, first_name, last_name, phone_number;
+    int row_number;
+    char seat_character;
+
+    cout << "Please enter the passenger id: ";
+    cin >> passenger_id;
+    cout << "Please enter the passenger first name: ";
+    cin >> first_name;
+    cout << "Please enter the passenger last name: ";
+    cin >> last_name;
+    cout << "Please enter the passenger phone number: ";
+    cin >> phone_number;
+    cout << "\nPlease enter the row number: ";
+    cin >> row_number;
+    cout << "Please enter the seat character: ";
+    cin >> seat_character;
+    cleanStandardInputStream();
+
+    Passenger passenger = Passenger(passenger_id, first_name, last_name, phone_number);
+    Seat seat = Seat(row_number, seat_character, passenger_id);
+    flight.addPassenger(passenger);
+    flight.addSeat(seat);
+};
+
 void removeExistingPassenger(Flight& flight);
 void saveDataToFile(Flight& flight);

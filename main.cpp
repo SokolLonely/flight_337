@@ -23,16 +23,15 @@ int main() {
                 pressEnter();
                 break;
             case 2:
-                displaySeatMap(selectedAirline -> get_flights()[selected_flight_index]);
+                displaySeatMap(selectedAirline -> get_flight(selected_flight_index));
                 pressEnter();
                 break;
             case 3:
-                displayPassengerInfo(selectedAirline -> get_flights()[selected_flight_index]);
+                displayPassengerInfo(selectedAirline -> get_flight(selected_flight_index));
                 pressEnter();
                 break;
             case 4:
-                cout << "Add a New Passenger" << endl; //TODO: replace with function call
-                pressEnter();
+                addNewPassenger(selectedAirline -> get_flight(selected_flight_index));
                 break;
             case 5:
                 cout << "Remove an Existing Passenger" << endl; //TODO: replace with function call

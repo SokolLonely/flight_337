@@ -50,7 +50,8 @@ class Seat{
         char seat_character;
         string passenger_id;
     public:  
-        Seat(string seat_id, string passenger_id);     
+        Seat(string seat_id, string passenger_id);
+        Seat(int row_number, char seat_character, string passenger_id);
         string get_passenger_id() const {
             return passenger_id;
         }
@@ -82,6 +83,7 @@ class Airline{
         void set_name(string name);
         string get_name() const;
         vector<Flight> get_flights() const { return flights; }
+        Flight& get_flight(int index) { return flights[index]; }
         void addFlight(Flight& flight);
 };
 
