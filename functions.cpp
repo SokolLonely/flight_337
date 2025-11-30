@@ -9,7 +9,6 @@
 #include <string>
 using namespace std;
 
-#define _WIN32
 void cleanStandardInputStream (void) {
     int leftover;
     do {
@@ -18,11 +17,7 @@ void cleanStandardInputStream (void) {
 }
 
 void clearScreen(void) {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
+    cout << "\033[2J\033[1;1H"; // ANSI escape sequence to clear the screen (cross-platform compatible)
 }
 
 void pressEnter() {
@@ -31,7 +26,6 @@ void pressEnter() {
 }
 
 void displayHeader() {
-    clearScreen();
     clearScreen();
     cout << "FMAS Version 1.0" << endl;
     cout << "Term Project - Flight Management Application System" << endl;
@@ -54,7 +48,7 @@ void printChoicePrompt() {
 
 int menu() {
     int choice = -1;
-    //clearScreen();
+    clearScreen();
     printChoicePrompt();
     cin >> choice;
     cleanStandardInputStream();
