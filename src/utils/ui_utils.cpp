@@ -26,6 +26,7 @@ void displayHeader() {
     cout << "Produced by Group#: 139" << endl;
     cout << "Names: Ryabinkin, Simon; ElSayed, Abdelrahman; Boucher, Maxime" << endl;
     pressEnter();
+    cleanStandardInputStream();
 }
 
 void printChoicePrompt() {
