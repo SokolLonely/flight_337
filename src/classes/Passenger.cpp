@@ -22,15 +22,3 @@ string Passenger::get_phone_number() const {
     return phone_number;
 }
 
-void Passenger::set_first_name(const string& f_name) {
-    first_name = f_name;
-}
-
-void Passenger::set_last_name(const string& l_name) {
-    last_name = l_name;
-}
-
-void Passenger::set_phone_number(string p_number) {
-    phone_number = p_number;
-}
-

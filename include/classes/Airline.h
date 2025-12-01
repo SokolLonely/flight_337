@@ -13,7 +13,6 @@ private:
     string name;
     vector<Flight> flights;
 public:
-    Airline();
     Airline(string name);
     void set_name(string name);
     string get_name() const;

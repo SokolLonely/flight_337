@@ -28,7 +28,6 @@ public:
     Route get_route() const;
     string get_flight_id() const;
     const vector<Passenger>& get_passengers() const;
-    Passenger& get_passenger(const string& passenger_id);
     void removePassenger(const string& passenger_id);
 };
 

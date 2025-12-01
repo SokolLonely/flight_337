@@ -11,15 +11,6 @@ void Flight::addPassenger(Passenger& passenger) {
     passengers.push_back(passenger);
 }
 
-Passenger& Flight::get_passenger(const string& passenger_id) {
-    for (Passenger& passenger : passengers) {
-        if (passenger.get_passenger_id() == passenger_id) {
-            return passenger;
-        }
-    }
-    throw runtime_error("Passenger with ID " + passenger_id + " not found");
-}
-
 void Flight::removePassenger(const string& passenger_id) {
     for (size_t i = 0; i < passengers.size(); i++) {
         if (passengers[i].get_passenger_id() == passenger_id) {

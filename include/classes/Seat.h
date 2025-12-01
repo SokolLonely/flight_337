@@ -16,9 +16,6 @@ public:
     string get_passenger_id() const;
     int get_row_number() const;
     char get_seat_character() const;
-    void set_row_number(int r_number);
-    void set_seat_character(char s_character);
-    void set_passenger_id(string p_id);
 };
 
 #endif // SEAT_H

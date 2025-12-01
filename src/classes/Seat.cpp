@@ -44,15 +44,3 @@ char Seat::get_seat_character() const {
     return seat_character;
 }
 
-void Seat::set_row_number(int r_number) {
-    row_number = r_number;
-}
-
-void Seat::set_seat_character(char s_character) {
-    seat_character = s_character;
-}
-
-void Seat::set_passenger_id(string p_id) {
-    passenger_id = p_id;
-}
-

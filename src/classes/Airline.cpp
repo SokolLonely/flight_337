@@ -2,11 +2,6 @@
 #include "../../include/classes/Airline.h"
 using namespace std;
 
-Airline::Airline() {
-    name.clear();
-    flights.clear();
-}
-
 Airline::Airline(string name) {
     set_name(name);
     flights.clear();
