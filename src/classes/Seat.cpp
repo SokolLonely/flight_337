@@ -6,7 +6,7 @@ using namespace std;
 Seat::Seat(string seat_id, string passenger_id)
     : passenger_id(passenger_id)
 {   
-    // TODO: improve this implementation
+    // Convert seat ID to row number and seat character
     // Find where the numeric part ends
     int num_end = 0;
     while (num_end < seat_id.length() && seat_id[num_end] >= '0' && seat_id[num_end] <= '9') {
