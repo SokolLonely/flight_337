@@ -8,6 +8,8 @@
 using std::vector;
 
 Airline* createAirline(const string& airline_name);
+//REQUIRES:
+// airline_name is a valid string
 // PROMISES:
 // Creates a new Airline instance with the provided name
 // Populates Airline with Flights, Routes, Passengers and Seats information by reading data files
@@ -15,6 +17,8 @@ Airline* createAirline(const string& airline_name);
 // Returns a pointer to the created airline instance 
 
 void saveData(vector<Flight> flights);
+//REQUIRES:
+// flights is a valid vector of Flight objects
 // PROMISES:
 // Prompts user on if they would like to save the passengers data to a file
 // Reprompts on invalid input
