@@ -13,14 +13,14 @@ Seat::Seat(string seat_id, string passenger_id)
         num_end++;
     }
         
-    // Extract the row number
+    // Get row number
     if (num_end > 0) {
         row_number = stoi(seat_id.substr(0, num_end));
     } else {
         row_number = 0;
     }
         
-    // Extract the seat character
+    // Get seat character
     if (num_end < seat_id.length()) {
         seat_character = seat_id[num_end];
     } else {

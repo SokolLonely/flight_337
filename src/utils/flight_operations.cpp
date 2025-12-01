@@ -10,7 +10,7 @@
 #include <stdexcept>
 using namespace std;
 
-int selectFlight(const vector<Flight>& flights) {   
+int selectFlight(const vector<Flight>& flights) { 
     cout << "Here is the list of available flights. Please select one: \n" << endl;
     
     for (int i = 0; i < flights.size(); i++) {
@@ -47,12 +47,12 @@ void displaySeatMap(Flight& flight) {
     int num_rows = flight.get_number_of_rows();
     int num_cols = flight.get_number_of_seats_per_row();
     
-    // Create a 2D map to quickly find seats by row and column
+    // Create a seatMap matrix to access seats by row and column
     vector<vector<bool>> seatMap(num_rows, vector<bool>(num_cols, false));
     for (const Seat& seat : seats) {
-        int seat_row = seat.get_row_number(); // 1-based
+        int seat_row = seat.get_row_number();
         char col_char = seat.get_seat_character();
-        int map_row = seat_row - 1; // Convert to 0-based for vector indexing
+        int map_row = seat_row - 1; // Convert for indexing
         if (map_row >= 0 && map_row < num_rows && col_char >= 'A' && col_char < 'A' + num_cols) {
             int map_col = col_char - 'A';
             seatMap[map_row][map_col] = !seat.get_passenger_id().empty();

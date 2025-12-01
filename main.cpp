@@ -12,7 +12,7 @@ int main() {
     displayHeader();
     int menu_choice;
 
-    // Initialize airline with its flights
+    // Initialize airline with flights
     Airline* selectedAirline = createAirline(default_airline);
 
     int selected_flight_index = 0;
