@@ -40,7 +40,7 @@ void Flight::addSeat(Seat& seat) {
     seats.push_back(seat);
 }
 
-vector<Seat> Flight::get_seats() const {
+const vector<Seat>& Flight::get_seats() const {
     return seats;
 }
 
@@ -60,7 +60,7 @@ string Flight::get_flight_id() const {
     return flight_id;
 }
 
-vector<Passenger> Flight::get_passengers() const {
+const vector<Passenger>& Flight::get_passengers() const {
     return passengers;
 }
 

@@ -16,7 +16,7 @@ public:
     Airline(string name);
     void set_name(string name);
     string get_name() const;
-    vector<Flight> get_flights() const;
+    const vector<Flight>& get_flights() const;
     Flight& get_flight(int index);
     void addFlight(Flight& flight);
 };

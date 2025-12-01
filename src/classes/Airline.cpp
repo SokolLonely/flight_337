@@ -25,7 +25,7 @@ string Airline::get_name() const {
     return name;
 }
 
-vector<Flight> Airline::get_flights() const {
+const vector<Flight>& Airline::get_flights() const {
     return flights;
 }
 
