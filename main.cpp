@@ -1,45 +1,50 @@
-//only main function here. all other functions and calls go to classes.cpp 
-//we may create a seperate file for formatted output functions
-#include "functions.h"
-#include "classes.h"
+#include <iostream>
+#include "include/classes/Airline.h"
+#include "include/classes/Flight.h"
+#include "include/utils/ui_utils.h"
+#include "include/utils/flight_operations.h"
+#include "include/utils/data_io.h"
 using namespace std;
 
 int main() {
-    //cleanStandardInputStream();
     displayHeader();
-    int choice;
-    Flight active;
-    while((choice = menu())){
-        switch(choice){
+    int menu_choice;
+
+    // Initialize database of flights
+    Airline* selectedAirline = createAirline(); // Should have possibility of multiple airlines in the future
+
+    int selected_flight_index = 0;
+
+    while((menu_choice = menu())) {
+        clearScreen();
+        Flight& selected_flight = selectedAirline -> get_flight(selected_flight_index);
+        switch(menu_choice) {
             case 1:
-                cout << "Select a flight" << endl; //TODO: replace with function call
-                
-                active = browseFlightList();
+                selected_flight_index = browseFlightList(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:
-                cout << "Display Flight Seat Map" << endl; //TODO: replace with function call
-                displaySeatMap(active);
+                displaySeatMap(selected_flight);
                 pressEnter();
                 break;
             case 3:
-                cout << "Display Passengers Information" << endl; //TODO: replace with function call
+                displayPassengerInfo(selected_flight);
                 pressEnter();
                 break;
             case 4:
-                cout << "Add a New Passenger" << endl; //TODO: replace with function call
-                pressEnter();
+                addNewPassenger(selected_flight);
                 break;
             case 5:
-                cout << "Remove an Existing Passenger" << endl; //TODO: replace with function call
+                removeExistingPassenger(selected_flight);
                 pressEnter();
                 break;
             case 6:
-                cout << "Save data" << endl; //TODO: replace with function call
+                saveData(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 7:
-                cout << "Quitting..." << endl;
+                cout << "Program terminated." << endl;
+                delete selectedAirline;
                 return 0;
             default:
                 cout << "Invalid choice. Please try again." << endl;
@@ -47,5 +52,6 @@ int main() {
                 break;
         }
     }
+    delete selectedAirline;
     return 0;   
 }
