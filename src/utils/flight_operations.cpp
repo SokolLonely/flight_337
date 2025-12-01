@@ -230,7 +230,7 @@ void removeExistingPassenger(Flight& flight) {
     }
         
     if (!passenger_exists) {
-        cout << "\nPassenger with ID \"" << passenger_id << "\" not found. Please try again." << endl;
+        cout << "\nPassenger with ID \"" << passenger_id << "\" not found." << endl;
         return;
     }
         
