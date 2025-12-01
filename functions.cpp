@@ -210,5 +210,16 @@ void addNewPassenger(Flight& flight) {
     flight.addSeat(seat);
 };
 
-void removeExistingPassenger(Flight& flight);
+void removeExistingPassenger(Flight& flight) {
+    string passenger_id;
+    cout << "Please enter the id of the passenger that needs to be removed: ";
+    cin >> passenger_id;
+    cleanStandardInputStream();
+
+    string passenger_name = flight.get_passenger(passenger_id).get_first_name() + " " + flight.get_passenger(passenger_id).get_last_name();
+    flight.removePassenger(passenger_id);
+
+    cout << "\nPassenger " << passenger_name << " was successfully removed from flight " << flight.get_flight_id() << "." << endl;
+};
+
 void saveDataToFile(Flight& flight);

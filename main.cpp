@@ -34,7 +34,7 @@ int main() {
                 addNewPassenger(selectedAirline -> get_flight(selected_flight_index));
                 break;
             case 5:
-                cout << "Remove an Existing Passenger" << endl; //TODO: replace with function call
+                removeExistingPassenger(selectedAirline -> get_flight(selected_flight_index));
                 pressEnter();
                 break;
             case 6:

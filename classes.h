@@ -116,6 +116,8 @@ class Flight {
         Route get_route() const { return route; }
         string get_flight_id() const { return flight_id; }
         vector<Passenger> get_passengers() const { return passengers; }
+        Passenger& get_passenger(const string& passenger_id);
+        void removePassenger(const string& passenger_id);
 };
 
 #endif

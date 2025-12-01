@@ -45,6 +45,30 @@ void Flight::addPassenger(Passenger& passenger) {
     passengers.push_back(passenger);
 }
 
+Passenger& Flight::get_passenger(const string& passenger_id) {
+    for (Passenger& passenger : passengers) {
+        if (passenger.get_passenger_id() == passenger_id) {
+            return passenger;
+        }
+    }
+}
+
+void Flight::removePassenger(const string& passenger_id) {
+    for (size_t i = 0; i < passengers.size(); i++) {
+        if (passengers[i].get_passenger_id() == passenger_id) {
+            passengers.erase(passengers.begin() + i);
+            // Also remove the corresponding seat
+            for (size_t j = 0; j < seats.size(); j++) {
+                if (seats[j].get_passenger_id() == passenger_id) {
+                    seats.erase(seats.begin() + j);
+                    break;
+                }
+            }
+            return;
+        }
+    }
+}
+
 void Flight::addSeat(Seat& seat) {
     seats.push_back(seat);
 }
