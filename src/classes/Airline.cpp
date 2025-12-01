@@ -1,5 +1,7 @@
 // src/classes/Airline.cpp
 #include "../../include/classes/Airline.h"
+#include <stdexcept>
+#include <string>
 using namespace std;
 
 Airline::Airline(string name) {
@@ -19,7 +21,7 @@ const vector<Flight>& Airline::get_flights() const {
     return flights;
 }
 
-const Flight& Airline::get_flight(int index) const {
+Flight& Airline::get_flight(int index) {
     if (index < 0 || index >= flights.size()) {
         throw out_of_range("Flight index " + to_string(index) + " is out of range.");
     }
