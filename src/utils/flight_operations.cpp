@@ -126,8 +126,9 @@ void addNewPassenger(Flight& flight) {
 
     // Get valid passenger ID
     while (true) {
-        cout << "Please enter the passenger id: ";
+        cout << "Please enter the passenger id or press return to quit: ";
         cin >> passenger_id;
+        if (passenger_id == ""){break;}
         cleanStandardInputStream();
         
         // Check if passenger ID already exists
