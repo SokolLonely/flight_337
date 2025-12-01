@@ -10,7 +10,7 @@
 #include <stdexcept>
 using namespace std;
 
-int selectFlight(const vector<Flight>& flights) {   
+int selectFlight(const vector<Flight>& flights) { 
     cout << "Here is the list of available flights. Please select one: \n" << endl;
     
     for (int i = 0; i < flights.size(); i++) {
