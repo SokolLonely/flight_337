@@ -9,7 +9,10 @@ To compile the program, run:
 ```bash
 g++ -std=c++11 -I include main.cpp src/classes/*.cpp src/utils/*.cpp -o flight_management
 ```
-
+or (on windows)
+```bash
+g++ -std=c++11 main.cpp src/*/* -o flight_management
+```
 ## Running
 
 After compilation, run the program with:
