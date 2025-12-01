@@ -4,6 +4,8 @@
 using namespace std;
 
 void cleanStandardInputStream(void) {
+// PROMISES:
+// Clears the standard inpuit stream
     int leftover;
     do {
         leftover = cin.get();
@@ -11,15 +13,21 @@ void cleanStandardInputStream(void) {
 }
 
 void clearScreen(void) {
+// PROMISES:
+// Clears the terminal/screen for new output
     cout << "\033[2J\033[1;1H"; // ANSI escape sequence to clear the screen (cross-platform compatible)
 }
 
 void pressEnter() {
+// PROMISES:
+// Prompts the user to press enter before continuing with the program
     cout << "\n<<< Press Return to Continue >>>" << endl;
     cin.get();
 }
 
 void displayHeader() {
+// PROMISES:
+// Displays the start screen for the program
     clearScreen();
     cout << "FMAS Version 1.0" << endl;
     cout << "Term Project - Flight Management Application System" << endl;
@@ -30,6 +38,8 @@ void displayHeader() {
 }
 
 void printChoicePrompt() {
+// PROMISES:
+// Displays the options for the user to select from
     cout << "Please select one the following options:\n" << endl;
     cout << "1. Select a flight" << endl;
     cout << "2. Display Flight Seat Map." << endl;
@@ -42,6 +52,9 @@ void printChoicePrompt() {
 }
 
 int menu() {
+// PROMISES:
+// Returns user menu choice as an int
+// Reprompts user on invalid menu inputs
     int choice = -1;
     clearScreen();
     
