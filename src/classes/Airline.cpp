@@ -19,7 +19,7 @@ const vector<Flight>& Airline::get_flights() const {
     return flights;
 }
 
-Flight& Airline::get_flight(int index) {
+const Flight& Airline::get_flight(int index) const {
     if (index < 0 || index >= flights.size()) {
         throw out_of_range("Flight index " + to_string(index) + " is out of range.");
     }
