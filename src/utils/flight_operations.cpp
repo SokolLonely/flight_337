@@ -215,16 +215,25 @@ void removeExistingPassenger(Flight& flight) {
     cout << "Please enter the id of the passenger that needs to be removed: ";
     cin >> passenger_id;
     cleanStandardInputStream();
-    if (!flight.isPassengerExist(passenger_id)) {
-        cout << "\nError: Passenger with ID " << passenger_id << " does not exist on flight " 
-             << flight.get_flight_id() << "." << endl;
+
+    // Check if passenger exists
+    const vector<Passenger>& passengers = flight.get_passengers();
+    bool passenger_exists = false;
+    string passenger_name;
+    for (const Passenger& passenger : passengers) {
+        if (passenger.get_passenger_id() == passenger_id) {
+            passenger_exists = true;
+            passenger_name = passenger.get_first_name() + " " + passenger.get_last_name();
+            break;
+        }
+    }
+        
+    if (!passenger_exists) {
+        cout << "\nPassenger with ID \"" << passenger_id << "\" not found. Please try again." << endl;
         return;
     }
-    string passenger_name = flight.get_passenger(passenger_id).get_first_name() + " " 
-                           + flight.get_passenger(passenger_id).get_last_name();
+        
     flight.removePassenger(passenger_id);
-
-    cout << "\nPassenger " << passenger_name << " was successfully removed from flight " 
-         << flight.get_flight_id() << "." << endl;
+    cout << "\nPassenger " << passenger_name << " was successfully removed from flight " << flight.get_flight_id() << "." << endl;
 }
 
