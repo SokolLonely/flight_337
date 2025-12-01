@@ -64,7 +64,7 @@ Airline* createAirline() {
 void saveData(vector<Flight> flights) {
     char answer;
     while (true) {
-        cout << "Do you want to save the data in the passengers.txt file? Please answer <Y or N>: ";
+        cout << "Do you want to save the data to \"data/passengers.txt\"? Please answer <Y or N>: ";
         cin >> answer;
         cleanStandardInputStream();
         if (answer == 'Y') break;
