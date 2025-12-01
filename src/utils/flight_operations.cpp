@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 
-int browseFlightList(vector<Flight> flights) {   
+int selectFlight(const vector<Flight>& flights) {   
     cout << "Here is the list of available flights. Please select one: \n" << endl;
     
     for (int i = 0; i < flights.size(); i++) {
@@ -19,11 +19,22 @@ int browseFlightList(vector<Flight> flights) {
              << setw(4) << flights[i].get_number_of_rows() 
              << flights[i].get_number_of_seats_per_row() << endl;
     }
+
     int selected_flight_index;
-    cout << "\nEnter your choice: ";
-    cin >> selected_flight_index;
-    // TODO: improve error handling
-    cleanStandardInputStream(); // Clear any leftover input
+    while (true) {
+        cout << "\nEnter your choice: ";
+        cin >> selected_flight_index;
+        
+        if (!cin.fail() && selected_flight_index >= 1 && selected_flight_index <= flights.size()) {
+            cleanStandardInputStream();
+            break;
+        }
+        
+        cin.clear();
+        cleanStandardInputStream();
+        cout << "\nInvalid choice. Please enter a number between 1 and " << flights.size() << "." << endl;
+    }
+
     cout << "You have selected flight " << flights[selected_flight_index - 1].get_flight_id() 
          << " from " << flights[selected_flight_index - 1].get_route().get_source() 
          << " to " << flights[selected_flight_index - 1].get_route().get_destination() << "." << endl;

@@ -21,7 +21,7 @@ int main() {
         Flight& selected_flight = selectedAirline -> get_flight(selected_flight_index);
         switch(menu_choice) {
             case 1:
-                selected_flight_index = browseFlightList(selectedAirline -> get_flights());
+                selected_flight_index = selectFlight(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:

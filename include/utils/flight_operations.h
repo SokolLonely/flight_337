@@ -6,7 +6,7 @@
 #include "../classes/Flight.h"
 using std::vector;
 
-int browseFlightList(vector<Flight> flights);
+int selectFlight(const vector<Flight>& flights);
 void displaySeatMap(Flight& flight);
 void displayPassengerInfo(Flight& flight);
 void addNewPassenger(Flight& flight);
