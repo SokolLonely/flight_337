@@ -15,6 +15,11 @@
 using namespace std;
 
 Airline* createAirline(const string& airline_name) {
+// PROMISES:
+// Creates a new Airline instance with the provided name
+// Populates Airline with Flights, Routes, Passengers and Seats information by reading data files
+// Prints error messages if input files can't be opened
+// Returns a pointer to the created airline instance 
     Airline* airline = new Airline(airline_name);
 
     // Open data files
@@ -62,6 +67,11 @@ Airline* createAirline(const string& airline_name) {
 }
 
 void saveData(vector<Flight> flights) {
+// PROMISES:
+// Prompts user on if they would like to save the passengers data to a file
+// Reprompts on invalid input
+// Prints error message if output file can't be opened
+// Stores all passengers information in a file "passengers.txt"
     char answer;
     while (true) {
         cout << "Do you want to save the data to \"data/passengers.txt\"? Please answer <Y or N>: ";
