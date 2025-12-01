@@ -3,7 +3,7 @@
 #define ROUTE_H
 
 #include <string>
-using namespace std;
+using std::string;
 
 class Route {
 private:

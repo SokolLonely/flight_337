@@ -5,7 +5,7 @@
 #include <vector>
 #include "../classes/Airline.h"
 #include "../classes/Flight.h"
-using namespace std;
+using std::vector;
 
 Airline* createAirline();
 void saveData(vector<Flight> flights);

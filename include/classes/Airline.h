@@ -5,7 +5,8 @@
 #include <vector>
 #include <string>
 #include "Flight.h"
-using namespace std;
+using std::string;
+using std::vector;
 
 class Airline {
 private:

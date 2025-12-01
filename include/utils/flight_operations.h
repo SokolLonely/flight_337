@@ -4,7 +4,7 @@
 
 #include <vector>
 #include "../classes/Flight.h"
-using namespace std;
+using std::vector;
 
 int browseFlightList(vector<Flight> flights);
 void displaySeatMap(Flight& flight);

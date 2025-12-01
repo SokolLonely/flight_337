@@ -7,7 +7,8 @@
 #include "Passenger.h"
 #include "Seat.h"
 #include "Route.h"
-using namespace std;
+using std::string;
+using std::vector;
 
 class Flight {
 private:

@@ -3,7 +3,7 @@
 #define SEAT_H
 
 #include <string>
-using namespace std;
+using std::string;
 
 class Seat {
 private:
