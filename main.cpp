@@ -34,6 +34,7 @@ int main() {
                 break;
             case 4:
                 addNewPassenger(selected_flight);
+                pressEnter();
                 break;
             case 5:
                 removeExistingPassenger(selected_flight);

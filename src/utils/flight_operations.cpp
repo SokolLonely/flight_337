@@ -7,6 +7,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <stdexcept>
 using namespace std;
 
 int selectFlight(const vector<Flight>& flights) {   
@@ -123,24 +124,90 @@ void addNewPassenger(Flight& flight) {
     int row_number;
     char seat_character;
 
-    cout << "Please enter the passenger id: ";
-    cin >> passenger_id;
+    // Get valid passenger ID
+    while (true) {
+        cout << "Please enter the passenger id: ";
+        cin >> passenger_id;
+        cleanStandardInputStream();
+        
+        // Check if passenger ID already exists
+        const vector<Passenger>& passengers = flight.get_passengers();
+        bool id_exists = false;
+        for (const Passenger& passenger : passengers) {
+            if (passenger.get_passenger_id() == passenger_id) {
+                id_exists = true;
+                break;
+            }
+        }
+        
+        if (!id_exists) break;
+        cout << "\nPassenger ID already exists. Please enter a different ID.\n" << endl;
+    }
+    
     cout << "Please enter the passenger first name: ";
     cin >> first_name;
     cout << "Please enter the passenger last name: ";
     cin >> last_name;
     cout << "Please enter the passenger phone number: ";
     cin >> phone_number;
-    cout << "\nPlease enter the row number: ";
-    cin >> row_number;
-    cout << "Please enter the seat character: ";
-    cin >> seat_character;
-    cleanStandardInputStream();
+    
+    // Get valid seat
+    while (true) {
+        // Get valid row number
+        int max_rows = flight.get_number_of_rows();
+        while (true) {
+            cout << "\nPlease enter the row number (1-" << max_rows << "): ";
+            cin >> row_number;
+            
+            if (!cin.fail() && row_number >= 1 && row_number <= max_rows) {
+                cleanStandardInputStream();
+                break;
+            }
+            
+            cin.clear();
+            cleanStandardInputStream();
+            cout << "\nInvalid row number. Please enter a number between 1 and " << max_rows << "." << endl;
+        }
+        
+        // Get valid seat character
+        int max_seats = flight.get_number_of_seats_per_row();
+        char max_seat_char = 'A' + max_seats - 1;
+        while (true) {
+            cout << "Please enter the seat character (A-" << max_seat_char << "): ";
+            cin >> seat_character;
+            cleanStandardInputStream();
+            
+            if (seat_character >= 'A' && seat_character <= max_seat_char) {
+                break;
+            }
+            
+            cout << "\nInvalid seat character. Please enter a letter between A and " << max_seat_char << ".\n" << endl;
+        }
+        
+        // Check if seat is already taken
+        const vector<Seat>& seats = flight.get_seats();
+        bool seat_taken = false;
+        for (const Seat& seat : seats) {
+            if (seat.get_row_number() == row_number && seat.get_seat_character() == seat_character) {
+                seat_taken = true;
+                break;
+            }
+        }
+        
+        if (seat_taken) {
+            cout << "\nSeat " << row_number << seat_character << " is already taken. Please choose a different seat." << endl;
+            continue;  // Go back to start of outer loop to ask for new seat
+        }
+        
+        // Seat is available, break out of outer loop
+        break;
+    }
 
     Passenger passenger = Passenger(passenger_id, first_name, last_name, phone_number);
     Seat seat = Seat(row_number, seat_character, passenger_id);
     flight.addPassenger(passenger);
     flight.addSeat(seat);
+    cout << "\nPassenger " << passenger.get_first_name() << " " << passenger.get_last_name() << " added successfully to flight " << flight.get_flight_id() << "." << endl;
 }
 
 void removeExistingPassenger(Flight& flight) {
