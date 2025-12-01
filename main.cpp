@@ -1,5 +1,3 @@
-//only main function here. all other functions and calls go to classes.cpp 
-//we may create a seperate file for formatted output functions
 #include <fstream>
 #include <string>
 #include "functions.h"
@@ -17,28 +15,29 @@ int main() {
 
     while((menu_choice = menu())) {
         clearScreen();
+        Flight& selected_flight = selectedAirline -> get_flight(selected_flight_index);
         switch(menu_choice) {
             case 1:
                 selected_flight_index = browseFlightList(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:
-                displaySeatMap(selectedAirline -> get_flight(selected_flight_index));
+                displaySeatMap(selected_flight);
                 pressEnter();
                 break;
             case 3:
-                displayPassengerInfo(selectedAirline -> get_flight(selected_flight_index));
+                displayPassengerInfo(selected_flight);
                 pressEnter();
                 break;
             case 4:
-                addNewPassenger(selectedAirline -> get_flight(selected_flight_index));
+                addNewPassenger(selected_flight);
                 break;
             case 5:
-                removeExistingPassenger(selectedAirline -> get_flight(selected_flight_index));
+                removeExistingPassenger(selected_flight);
                 pressEnter();
                 break;
             case 6:
-                cout << "Save data" << endl; //TODO: replace with function call
+                saveData(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 7:

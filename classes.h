@@ -110,7 +110,7 @@ class Flight {
         Flight(string flight_id, int number_of_rows, int number_of_seats_per_row, Route route);
         void addPassenger(Passenger& passenger);
         void addSeat(Seat& seat);
-        vector<Seat> get_seats () { return seats; }
+        vector<Seat> get_seats() const { return seats; }
         int get_number_of_rows() const { return number_of_rows; }
         int get_number_of_seats_per_row() const { return number_of_seats_per_row; }
         Route get_route() const { return route; }

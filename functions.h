@@ -13,5 +13,5 @@ void displaySeatMap(Flight& flight);
 void displayPassengerInfo(Flight& flight);
 void addNewPassenger(Flight& flight);
 void removeExistingPassenger(Flight& flight);
-void saveDataToFile(Flight& flight);
+void saveData(vector<Flight> flights);
 #endif

@@ -1,6 +1,7 @@
 //this file has all code for classes and their functions (methods)
 #include <string>
 #include <cctype>
+#include <stdexcept>
 #include "classes.h"
 using namespace std;
 
@@ -51,6 +52,7 @@ Passenger& Flight::get_passenger(const string& passenger_id) {
             return passenger;
         }
     }
+    throw runtime_error("Passenger with ID " + passenger_id + " not found");
 }
 
 void Flight::removePassenger(const string& passenger_id) {

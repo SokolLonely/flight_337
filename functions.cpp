@@ -222,4 +222,55 @@ void removeExistingPassenger(Flight& flight) {
     cout << "\nPassenger " << passenger_name << " was successfully removed from flight " << flight.get_flight_id() << "." << endl;
 };
 
-void saveDataToFile(Flight& flight);
+void saveData(vector<Flight> flights) {
+    char answer;
+    while (true) {
+        cout << "Do you want to save the data in the passengers.txt file? Please answer <Y or N>: ";
+        cin >> answer;
+        cleanStandardInputStream();
+        if (answer == 'Y') break;
+        else if (answer == 'N') return;
+        else {
+            cout << "\nInvalid answer. Please try again.\n" << endl;
+        }
+    }
+
+    ofstream passengerFile("data/passengers.txt");
+    if (!passengerFile) {
+        cerr << "Error opening passengers.txt file." << endl;
+        exit(1);
+    }
+    
+    // Iterate through all flights and save passengers from each flight
+    bool first_passenger = true;
+    for (const Flight& flight : flights) {
+        vector<Passenger> passengers = flight.get_passengers();
+        vector<Seat> seats = flight.get_seats();
+        
+        for (const Passenger& passenger : passengers) {
+            // Find the corresponding seat for this passenger
+            string seat_id = "";
+            for (const Seat& seat : seats) {
+                if (seat.get_passenger_id() == passenger.get_passenger_id()) {
+                    seat_id = to_string(seat.get_row_number()) + seat.get_seat_character();
+                    break;
+                }
+            }
+            
+            if (!first_passenger) {
+                passengerFile << endl;
+            }
+            first_passenger = false;
+            
+            passengerFile << left << setw(8) << flight.get_flight_id()
+                          << setw(8) << passenger.get_first_name()
+                          << setw(10) << passenger.get_last_name()
+                          << setw(16) << passenger.get_phone_number()
+                          << setw(6) << seat_id
+                          << passenger.get_passenger_id();
+        }
+    }
+    passengerFile.close();
+
+    cout << "\nAll the data in the passenger list were saved." << endl;
+};
