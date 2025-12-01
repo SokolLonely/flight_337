@@ -1,7 +1,9 @@
-#include <fstream>
-#include <string>
-#include "functions.h"
-#include "classes.h"
+#include <iostream>
+#include "include/classes/Airline.h"
+#include "include/classes/Flight.h"
+#include "include/utils/ui_utils.h"
+#include "include/utils/flight_operations.h"
+#include "include/utils/data_io.h"
 using namespace std;
 
 int main() {
