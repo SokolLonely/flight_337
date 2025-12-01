@@ -15,7 +15,7 @@ void Flight::removePassenger(const string& passenger_id) {
     for (size_t i = 0; i < passengers.size(); i++) {
         if (passengers[i].get_passenger_id() == passenger_id) {
             passengers.erase(passengers.begin() + i);
-            // Also remove the corresponding seat
+            // Remove corresponding seat
             for (size_t j = 0; j < seats.size(); j++) {
                 if (seats[j].get_passenger_id() == passenger_id) {
                     seats.erase(seats.begin() + j);

@@ -87,7 +87,7 @@ void saveData(vector<Flight> flights) {
         vector<Seat> seats = flight.get_seats();
         
         for (const Passenger& passenger : passengers) {
-            // Find the corresponding seat for this passenger
+            // Find the passenger's seat
             string seat_id = "";
             for (const Seat& seat : seats) {
                 if (seat.get_passenger_id() == passenger.get_passenger_id()) {
