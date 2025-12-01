@@ -136,7 +136,12 @@ void removeExistingPassenger(Flight& flight) {
     cout << "Please enter the id of the passenger that needs to be removed: ";
     cin >> passenger_id;
     cleanStandardInputStream();
-
+    //error handling 
+    if (!flight.isPassengerExist(passenger_id)) {
+        cout << "\nError: Passenger with ID " << passenger_id << " does not exist on flight " 
+             << flight.get_flight_id() << "." << endl;
+        return;
+    }
     string passenger_name = flight.get_passenger(passenger_id).get_first_name() + " " 
                            + flight.get_passenger(passenger_id).get_last_name();
     flight.removePassenger(passenger_id);

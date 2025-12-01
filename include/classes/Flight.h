@@ -28,6 +28,7 @@ public:
     vector<Passenger> get_passengers() const;
     Passenger& get_passenger(const string& passenger_id);
     void removePassenger(const string& passenger_id);
+    bool isPassengerExist(const string& passenger_id) const;
 };
 
 #endif // FLIGHT_H

@@ -9,7 +9,14 @@ Flight::Flight(string flight_id, int number_of_rows, int number_of_seats_per_row
 void Flight::addPassenger(Passenger& passenger) {
     passengers.push_back(passenger);
 }
-
+bool Flight::isPassengerExist(const string& passenger_id) const {
+    for (const Passenger& passenger : passengers) {
+        if (passenger.get_passenger_id() == passenger_id) {
+            return true;
+        }
+    }
+    return false;
+}
 Passenger& Flight::get_passenger(const string& passenger_id) {
     for (Passenger& passenger : passengers) {
         if (passenger.get_passenger_id() == passenger_id) {
