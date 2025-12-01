@@ -1,3 +1,4 @@
+// include/classes/Seat.h
 #ifndef SEAT_H
 #define SEAT_H
 
