@@ -14,8 +14,8 @@
 #include <vector>
 using namespace std;
 
-Airline* createAirline() {
-    Airline* airline = new Airline("WestJet");
+Airline* createAirline(const string& airline_name) {
+    Airline* airline = new Airline(airline_name);
 
     // Open data files
     ifstream flightFile("data/flights.txt");

@@ -1,5 +1,7 @@
 // src/classes/Airline.cpp
 #include "../../include/classes/Airline.h"
+#include <stdexcept>
+#include <string>
 using namespace std;
 
 Airline::Airline(string name) {

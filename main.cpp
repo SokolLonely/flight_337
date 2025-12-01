@@ -6,13 +6,14 @@
 #include "include/utils/flight_operations.h"
 #include "include/utils/data_io.h"
 using namespace std;
+const string default_airline = "WestJet";
 
 int main() {
     displayHeader();
     int menu_choice;
 
-    // Initialize database of flights
-    Airline* selectedAirline = createAirline(); // Should have possibility of multiple airlines in the future
+    // Initialize airline with its flights
+    Airline* selectedAirline = createAirline(default_airline);
 
     int selected_flight_index = 0;
 

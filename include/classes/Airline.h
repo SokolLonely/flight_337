@@ -18,6 +18,7 @@ public:
     string get_name() const;
     const vector<Flight>& get_flights() const;
     Flight& get_flight(int index);
+    const Flight& get_flight(int index) const;
     void addFlight(Flight& flight);
 };
 

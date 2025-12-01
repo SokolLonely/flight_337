@@ -7,7 +7,7 @@
 #include "../classes/Flight.h"
 using std::vector;
 
-Airline* createAirline();
+Airline* createAirline(const string& airline_name);
 void saveData(vector<Flight> flights);
 
 #endif // DATA_IO_H
