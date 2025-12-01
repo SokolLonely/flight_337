@@ -1,3 +1,4 @@
+// main.cpp
 #include <iostream>
 #include "include/classes/Airline.h"
 #include "include/classes/Flight.h"
@@ -20,7 +21,7 @@ int main() {
         Flight& selected_flight = selectedAirline -> get_flight(selected_flight_index);
         switch(menu_choice) {
             case 1:
-                selected_flight_index = browseFlightList(selectedAirline -> get_flights());
+                selected_flight_index = selectFlight(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:
@@ -33,6 +34,7 @@ int main() {
                 break;
             case 4:
                 addNewPassenger(selected_flight);
+                pressEnter();
                 break;
             case 5:
                 removeExistingPassenger(selected_flight);

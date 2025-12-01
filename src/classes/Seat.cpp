@@ -1,3 +1,4 @@
+// src/classes/Seat.cpp
 #include "../../include/classes/Seat.h"
 #include <string>
 using namespace std;
@@ -5,7 +6,7 @@ using namespace std;
 Seat::Seat(string seat_id, string passenger_id)
     : passenger_id(passenger_id)
 {   
-    // TODO: improve this implementation
+    // Convert seat ID to row number and seat character
     // Find where the numeric part ends
     int num_end = 0;
     while (num_end < seat_id.length() && seat_id[num_end] >= '0' && seat_id[num_end] <= '9') {
@@ -41,17 +42,5 @@ int Seat::get_row_number() const {
 
 char Seat::get_seat_character() const {
     return seat_character;
-}
-
-void Seat::set_row_number(int r_number) {
-    row_number = r_number;
-}
-
-void Seat::set_seat_character(char s_character) {
-    seat_character = s_character;
-}
-
-void Seat::set_passenger_id(string p_id) {
-    passenger_id = p_id;
 }
 

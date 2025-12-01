@@ -1,11 +1,12 @@
+// include/utils/flight_operations.h
 #ifndef FLIGHT_OPERATIONS_H
 #define FLIGHT_OPERATIONS_H
 
 #include <vector>
 #include "../classes/Flight.h"
-using namespace std;
+using std::vector;
 
-int browseFlightList(vector<Flight> flights);
+int selectFlight(const vector<Flight>& flights);
 void displaySeatMap(Flight& flight);
 void displayPassengerInfo(Flight& flight);
 void addNewPassenger(Flight& flight);

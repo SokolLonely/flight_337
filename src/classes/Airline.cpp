@@ -1,15 +1,6 @@
+// src/classes/Airline.cpp
 #include "../../include/classes/Airline.h"
 using namespace std;
-
-void Airline::addFlight(Flight& flight) {
-    flights.push_back(flight);
-    return;
-}
-
-Airline::Airline() {
-    name.clear();
-    flights.clear();
-}
 
 Airline::Airline(string name) {
     set_name(name);
@@ -24,11 +15,19 @@ string Airline::get_name() const {
     return name;
 }
 
-vector<Flight> Airline::get_flights() const {
+const vector<Flight>& Airline::get_flights() const {
     return flights;
 }
 
 Flight& Airline::get_flight(int index) {
+    if (index < 0 || index >= flights.size()) {
+        throw out_of_range("Flight index " + to_string(index) + " is out of range.");
+    }
     return flights[index];
+}
+
+void Airline::addFlight(Flight& flight) {
+    flights.push_back(flight);
+    return;
 }
 
