@@ -1,3 +1,4 @@
+// main.cpp
 #include <iostream>
 #include "include/classes/Airline.h"
 #include "include/classes/Flight.h"
@@ -5,13 +6,14 @@
 #include "include/utils/flight_operations.h"
 #include "include/utils/data_io.h"
 using namespace std;
+const string default_airline = "WestJet";
 
 int main() {
     displayHeader();
     int menu_choice;
 
-    // Initialize database of flights
-    Airline* selectedAirline = createAirline(); // Should have possibility of multiple airlines in the future
+    // Initialize airline with its flights
+    Airline* selectedAirline = createAirline(default_airline);
 
     int selected_flight_index = 0;
 
@@ -20,7 +22,7 @@ int main() {
         Flight& selected_flight = selectedAirline -> get_flight(selected_flight_index);
         switch(menu_choice) {
             case 1:
-                selected_flight_index = browseFlightList(selectedAirline -> get_flights());
+                selected_flight_index = selectFlight(selectedAirline -> get_flights());
                 pressEnter();
                 break;
             case 2:
@@ -33,6 +35,7 @@ int main() {
                 break;
             case 4:
                 addNewPassenger(selected_flight);
+                pressEnter();
                 break;
             case 5:
                 removeExistingPassenger(selected_flight);

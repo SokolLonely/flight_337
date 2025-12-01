@@ -1,3 +1,4 @@
+// src/utils/ui_utils.cpp
 #include "../../include/utils/ui_utils.h"
 #include <iostream>
 using namespace std;
@@ -42,9 +43,19 @@ void printChoicePrompt() {
 int menu() {
     int choice = -1;
     clearScreen();
-    printChoicePrompt();
-    cin >> choice;
-    cleanStandardInputStream();
+    
+    while (true) {
+        printChoicePrompt();
+
+        if (!(cin >> choice)) {
+            cin.clear();
+            cout << "\nInvalid choice. Please enter a number between 1 and 7.\n" << endl;
+            cleanStandardInputStream();
+            continue;
+        }
+        cleanStandardInputStream();
+        break;
+    }
     return choice;
 }
 

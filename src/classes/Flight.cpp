@@ -1,3 +1,4 @@
+// src/classes/Flight.cpp
 #include "../../include/classes/Flight.h"
 #include <stdexcept>
 using namespace std;
@@ -16,14 +17,6 @@ bool Flight::isPassengerExist(const string& passenger_id) const {
         }
     }
     return false;
-}
-Passenger& Flight::get_passenger(const string& passenger_id) {
-    for (Passenger& passenger : passengers) {
-        if (passenger.get_passenger_id() == passenger_id) {
-            return passenger;
-        }
-    }
-    throw runtime_error("Passenger with ID " + passenger_id + " not found");
 }
 
 void Flight::removePassenger(const string& passenger_id) {
@@ -46,7 +39,7 @@ void Flight::addSeat(Seat& seat) {
     seats.push_back(seat);
 }
 
-vector<Seat> Flight::get_seats() const {
+const vector<Seat>& Flight::get_seats() const {
     return seats;
 }
 
@@ -66,7 +59,7 @@ string Flight::get_flight_id() const {
     return flight_id;
 }
 
-vector<Passenger> Flight::get_passengers() const {
+const vector<Passenger>& Flight::get_passengers() const {
     return passengers;
 }
 

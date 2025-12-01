@@ -1,3 +1,4 @@
+// src/utils/data_io.cpp
 #include "../../include/utils/data_io.h"
 #include "../../include/classes/Passenger.h"
 #include "../../include/classes/Seat.h"
@@ -13,8 +14,8 @@
 #include <vector>
 using namespace std;
 
-Airline* createAirline() {
-    Airline* airline = new Airline("WestJet");
+Airline* createAirline(const string& airline_name) {
+    Airline* airline = new Airline(airline_name);
 
     // Open data files
     ifstream flightFile("data/flights.txt");
@@ -63,7 +64,7 @@ Airline* createAirline() {
 void saveData(vector<Flight> flights) {
     char answer;
     while (true) {
-        cout << "Do you want to save the data in the passengers.txt file? Please answer <Y or N>: ";
+        cout << "Do you want to save the data to \"data/passengers.txt\"? Please answer <Y or N>: ";
         cin >> answer;
         cleanStandardInputStream();
         if (answer == 'Y') break;

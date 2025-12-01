@@ -1,22 +1,24 @@
+// include/classes/Airline.h
 #ifndef AIRLINE_H
 #define AIRLINE_H
 
 #include <vector>
 #include <string>
 #include "Flight.h"
-using namespace std;
+using std::string;
+using std::vector;
 
 class Airline {
 private:
     string name;
     vector<Flight> flights;
 public:
-    Airline();
     Airline(string name);
     void set_name(string name);
     string get_name() const;
-    vector<Flight> get_flights() const;
+    const vector<Flight>& get_flights() const;
     Flight& get_flight(int index);
+    const Flight& get_flight(int index) const;
     void addFlight(Flight& flight);
 };
 
