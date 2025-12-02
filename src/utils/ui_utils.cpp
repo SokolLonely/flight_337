@@ -23,7 +23,7 @@ void displayHeader() {
     clearScreen();
     cout << "FMAS Version 1.0" << endl;
     cout << "Term Project - Flight Management Application System" << endl;
-    cout << "Produced by Group#: 139" << endl;
+    cout << "Produced by Group#: 11" << endl;
     cout << "Names: Ryabinkin, Simon; ElSayed, Abdelrahman; Boucher, Maxime" << endl;
     pressEnter();
     cleanStandardInputStream();
